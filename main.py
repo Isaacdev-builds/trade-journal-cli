@@ -1,0 +1,1 @@
+print("Trade Journal CLI initialized")
