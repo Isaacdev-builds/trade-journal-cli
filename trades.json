@@ -1,0 +1,9 @@
+[
+    {
+        "pair": "EUR/USD",
+        "direction": "BUY",
+        "risk": 234.0,
+        "rr": "2:1",
+        "result": "WIN"
+    }
+]

@@ -32,3 +32,19 @@ def display_trades(trades):
         print(f"RR: {trade['rr']}")
         print(f"Result: {trade['result']}")
         print("-" * 20)
+
+def delete_trade(trades, trade_number):
+    trade_index = trade_number - 1
+
+    if trade_index < 0 or trade_index >= len(trades):
+        print("Invalid trade number.")
+        return
+
+    deleted_trade = trades.pop(trade_index)
+
+    print("Trade deleted:")
+    print(f"Pair: {deleted_trade['pair']}")
+    print(f"Direction: {deleted_trade['direction']}")
+    print(f"Risk: ${deleted_trade['risk']:.2f}")
+    print(f"RR: {deleted_trade['rr']}")
+    print(f"Result: {deleted_trade['result']}")

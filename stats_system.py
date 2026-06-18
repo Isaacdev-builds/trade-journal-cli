@@ -9,9 +9,14 @@ def display_stats(trades):
     losses = 0
 
     total_risk = 0
+    highest_risk = 0
 
     for trade in trades:
         total_risk += trade["risk"]
+        
+        if trade["risk"] > highest_risk:
+            highest_risk = trade["risk"]
+
         if trade["result"] == "WIN":
             wins += 1
         elif trade["result"] == "LOSS":
@@ -27,3 +32,4 @@ def display_stats(trades):
     average_risk = total_risk / total_trades
     print(f"Total Risk: ${total_risk:.2f}")
     print(f"Average Risk: ${average_risk:.2f}")
+    print(f"Highest Risk: ${highest_risk:.2f}")
