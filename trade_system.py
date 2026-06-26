@@ -48,3 +48,18 @@ def delete_trade(trades, trade_number):
     print(f"Risk: ${deleted_trade['risk']:.2f}")
     print(f"RR: {deleted_trade['rr']}")
     print(f"Result: {deleted_trade['result']}")
+
+def edit_trade(trades, trade_number):
+    trade_index = trade_number - 1
+
+    if trade_index < 0 or trade_index >= len(trades):
+        print("Invalid trade number.")
+        return
+
+    print("\nEditing Trade")
+
+    new_risk = float(input("New Risk Amount: $"))
+
+    trades[trade_index]["risk"] = new_risk
+
+    print("Trade updated successfully.")

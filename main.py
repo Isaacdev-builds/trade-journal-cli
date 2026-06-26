@@ -1,4 +1,4 @@
-from trade_system import create_trade, display_trades, delete_trade
+from trade_system import create_trade, display_trades, delete_trade, edit_trade
 from stats_system import display_stats
 from storage_system import save_trades, load_trades
 
@@ -13,6 +13,7 @@ while True:
     print("4. Save Trades")
     print("5. Exit")
     print("6. Delete Trade")
+    print("7. Edit Trade")
     
     choice = input("Select option: ")
 
@@ -40,6 +41,11 @@ while True:
         display_trades(trades)
         trade_number = int(input("Enter trade number to delete: "))
         delete_trade(trades, trade_number)
+
+    elif choice == "7":
+        display_trades(trades)
+        trade_number = int(input("Enter trade number to edit: "))
+        edit_trade(trades, trade_number)
 
     else:
         print("Invalid option")
