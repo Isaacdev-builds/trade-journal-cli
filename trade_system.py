@@ -2,10 +2,20 @@ from datetime import datetime
 
 def create_trade():
 
-    pair = input("Pair: ").upper()
+    pair = input("Pair/Market: ").upper()
     direction = input("Direction (BUY/SELL): ").upper()
-    risk = float(input("Risk Amount: $ "))
-    rr = input("RR: ")
+    while True:
+        try:
+            risk = float(input("Risk Amount: $"))
+            break
+        except ValueError:
+            print("Invalid input. Please enter a numeric value for risk.")
+    while True:
+        try:
+            rr = float(input("RR: "))
+            break
+        except ValueError:
+            print("Invalid input. Please enter a numeric value for RR.")
     result = input("Result (WIN/LOSS): ").upper()
 
     created_at = datetime.now().strftime("%Y-%m-%d %I:%M %p")
@@ -32,10 +42,10 @@ def display_trades(trades):
     for index, trade in enumerate(trades, start=1):
         print(f"\nTrade {index}:")
         print(f"Date: {trade.get('created_at', 'No date recorded')}")
-        print(f"Pair: {trade['pair']}")
+        print(f"Pair/Market: {trade['pair']}")
         print(f"Direction: {trade['direction']}")
         print(f"Risk: ${trade['risk']:.2f}")
-        print(f"RR: {trade['rr']}")
+        print(f"RR: {trade['rr']}:1")
         print(f"Result: {trade['result']}")
         print("-" * 20)
 
@@ -49,10 +59,10 @@ def delete_trade(trades, trade_number):
     deleted_trade = trades.pop(trade_index)
 
     print("Trade deleted:")
-    print(f"Pair: {deleted_trade['pair']}")
+    print(f"Pair/Market: {deleted_trade['pair']}")
     print(f"Direction: {deleted_trade['direction']}")
     print(f"Risk: ${deleted_trade['risk']:.2f}")
-    print(f"RR: {deleted_trade['rr']}")
+    print(f"RR: {deleted_trade['rr']}:1")
     print(f"Result: {deleted_trade['result']}")
 
 def edit_trade(trades, trade_number):
@@ -65,7 +75,7 @@ def edit_trade(trades, trade_number):
     trade = trades[trade_index]
 
     print("\nEditing Trade")
-    print("1. Pair")
+    print("1. Pair/Market")
     print("2. Direction")
     print("3. Risk")
     print("4. RR")
@@ -74,16 +84,26 @@ def edit_trade(trades, trade_number):
     field_choice = input("Select field to edit: ")
 
     if field_choice == "1":
-        trade["pair"] = input("New Pair: ").upper()
+        trade["pair/market"] = input("New Pair/Market: ").upper()
 
     elif field_choice == "2":
         trade["direction"] = input("New Direction (BUY/SELL): ").upper()
 
     elif field_choice == "3":
-        trade["risk"] = float(input("New Risk Amount: $"))
+        while True:
+            try:
+                trade["risk"] = float(input("New Risk Amount: $"))
+                break
+            except ValueError:
+                print("Invalid input. Please enter a numeric value for risk.")
 
     elif field_choice == "4":
-        trade["rr"] = input("New RR: ")
+        while True:
+            try:
+                trade["rr"] = float(input("New RR: "))
+                break
+            except ValueError:
+                print("Invalid input. Please enter a numeric value for RR.")        
 
     elif field_choice == "5":
         trade["result"] = input("New Result (WIN/LOSS): ").upper()

@@ -47,5 +47,5 @@ def display_pair_stats(trades):
         print("No trades found for that pair.")
         return
 
-    print(f"\n=== PAIR STATS: {pair} ===")
+    print(f"\n=== PAIR/MARKET STATS: {pair} ===")
     display_stats(filtered_trades)

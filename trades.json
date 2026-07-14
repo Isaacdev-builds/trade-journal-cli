@@ -1,6 +1,6 @@
 [
     {
-        "pair": "EUR/USD",
+        "pair": "EURUSD",
         "direction": "SELL",
         "risk": 234.0,
         "rr": "2:1",
@@ -8,10 +8,18 @@
     },
     {
         "created_at": "2026-07-03 01:04 AM",
-        "pair": "GBP/USD",
+        "pair": "GBPUSD",
         "direction": "BUY",
         "risk": 346.0,
         "rr": "3:1",
         "result": "LOSS"
+    },
+    {
+        "created_at": "2026-07-13 10:54 PM",
+        "pair": "AAPL",
+        "direction": "S",
+        "risk": 211.0,
+        "rr": 2.5,
+        "result": "W"
     }
 ]
