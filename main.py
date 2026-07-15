@@ -21,6 +21,7 @@ while True:
     if choice == "1":
         trade = create_trade()
         trades.append(trade)
+        save_trades(trades)
 
         print("Trade Added:")
         print(trade)
@@ -42,11 +43,13 @@ while True:
         display_trades(trades)
         trade_number = int(input("Enter trade number to delete: "))
         delete_trade(trades, trade_number)
+        save_trades(trades)
 
     elif choice == "7":
         display_trades(trades)
         trade_number = int(input("Enter trade number to edit: "))
         edit_trade(trades, trade_number)
+        save_trades(trades)
 
     elif choice == "8":
         display_pair_stats(trades)

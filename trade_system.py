@@ -1,21 +1,18 @@
 from datetime import datetime
 
+def get_numeric_input(prompt):
+    while True:
+        try:
+            return float(input(prompt))
+        except ValueError:
+            print("Invalid input. Please enter a numeric value.")
+
 def create_trade():
 
     pair = input("Pair/Market: ").upper()
     direction = input("Direction (BUY/SELL): ").upper()
-    while True:
-        try:
-            risk = float(input("Risk Amount: $"))
-            break
-        except ValueError:
-            print("Invalid input. Please enter a numeric value for risk.")
-    while True:
-        try:
-            rr = float(input("RR: "))
-            break
-        except ValueError:
-            print("Invalid input. Please enter a numeric value for RR.")
+    risk = get_numeric_input("Risk Amount: $")
+    rr = get_numeric_input("RR: ")
     result = input("Result (WIN/LOSS): ").upper()
 
     created_at = datetime.now().strftime("%Y-%m-%d %I:%M %p")
@@ -90,21 +87,11 @@ def edit_trade(trades, trade_number):
         trade["direction"] = input("New Direction (BUY/SELL): ").upper()
 
     elif field_choice == "3":
-        while True:
-            try:
-                trade["risk"] = float(input("New Risk Amount: $"))
-                break
-            except ValueError:
-                print("Invalid input. Please enter a numeric value for risk.")
+        trade["risk"] = get_numeric_input("New Risk Amount: $")
 
     elif field_choice == "4":
-        while True:
-            try:
-                trade["rr"] = float(input("New RR: "))
-                break
-            except ValueError:
-                print("Invalid input. Please enter a numeric value for RR.")        
-
+        trade["rr"] = get_numeric_input("New RR: ")
+       
     elif field_choice == "5":
         trade["result"] = input("New Result (WIN/LOSS): ").upper()
 

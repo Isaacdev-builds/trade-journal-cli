@@ -1,17 +1,10 @@
 [
     {
-        "pair": "EURUSD",
-        "direction": "SELL",
-        "risk": 234.0,
-        "rr": "2:1",
-        "result": "WIN"
-    },
-    {
         "created_at": "2026-07-03 01:04 AM",
         "pair": "GBPUSD",
         "direction": "BUY",
         "risk": 346.0,
-        "rr": "3:1",
+        "rr": 3.0,
         "result": "LOSS"
     },
     {
@@ -21,5 +14,13 @@
         "risk": 211.0,
         "rr": 2.5,
         "result": "W"
+    },
+    {
+        "created_at": "2026-07-15 05:30 PM",
+        "pair": "SILVER",
+        "direction": "BUY",
+        "risk": 279.0,
+        "rr": 8.9,
+        "result": "WIN"
     }
 ]
