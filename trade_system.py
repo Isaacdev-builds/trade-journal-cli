@@ -30,6 +30,13 @@ def get_numeric_input(prompt):
         except ValueError:
             print("Invalid input. Please enter a numeric value.")
 
+def get_integer_input(prompt):
+    while True:
+        try:
+            return int(input(prompt))
+        except ValueError:
+            print("Invalid input. Please enter a whole number.")
+
 def create_trade():
 
     pair = input("Pair/Market: ").upper()
@@ -80,11 +87,11 @@ def delete_trade(trades, trade_number):
 
     if trade_index < 0 or trade_index >= len(trades):
         print("Invalid trade number.")
-        return
+        return False
 
     deleted_trade = trades.pop(trade_index)
 
-    print("Trade deleted:")
+    print("\nTrade deleted:")
     print(f"Pair/Market: {deleted_trade['pair']}")
     print(f"Session: {deleted_trade.get('session', 'No session recorded')}")
     print(f"Direction: {deleted_trade['direction']}")
@@ -93,49 +100,56 @@ def delete_trade(trades, trade_number):
     print(f"Result: {deleted_trade['result']}")
     print(f"Notes: {deleted_trade.get('notes', 'No notes recorded')}")
 
+    return True
+
 def edit_trade(trades, trade_number):
     trade_index = trade_number - 1
 
     if trade_index < 0 or trade_index >= len(trades):
         print("Invalid trade number.")
-        return
+        return False
 
     trade = trades[trade_index]
 
     print("\nEditing Trade")
     print("1. Pair/Market")
-    print("2. Session")
-    print("3. Direction")
-    print("4. Risk")
-    print("5. RR")
-    print("6. Result")
+    print("2. Direction")
+    print("3. Risk")
+    print("4. RR")
+    print("5. Result")
+    print("6. Session")
     print("7. Notes")
 
     field_choice = input("Select field to edit: ")
 
     if field_choice == "1":
-        trade["pair/market"] = input("New Pair/Market: ").upper()
+        trade["pair"] = input("New Pair/Market: ").upper()
 
     elif field_choice == "2":
-        trade["session"] = input("New Session (e.g., NY, LDN, ASIA): ").upper()
+        trade["direction"] = normalize_direction(
+            input("New Direction (BUY/SELL or B/S): ")
+        )
 
     elif field_choice == "3":
-        trade["direction"] = normalize_direction(input("New Direction (BUY/SELL or B/S): "))
-
-    elif field_choice == "4":
         trade["risk"] = get_numeric_input("New Risk Amount: $")
 
-    elif field_choice == "5":
+    elif field_choice == "4":
         trade["rr"] = get_numeric_input("New RR: ")
-       
+
+    elif field_choice == "5":
+        trade["result"] = normalize_result(
+            input("New Result (WIN/LOSS or W/L): ")
+        )
+
     elif field_choice == "6":
-        trade["result"] = normalize_result(input("New Result (WIN/LOSS or W/L): "))
+        trade["session"] = input("New Session: ").upper()
 
     elif field_choice == "7":
-        trade["notes"] = input("New Notes (optional): ")
+        trade["notes"] = input("New Notes: ")
 
     else:
         print("Invalid field choice.")
-        return
+        return False
 
     print("Trade updated successfully.")
+    return True
