@@ -5,15 +5,8 @@
         "direction": "BUY",
         "risk": 346.0,
         "rr": 3.0,
-        "result": "LOSS"
-    },
-    {
-        "created_at": "2026-07-13 10:54 PM",
-        "pair": "AAPL",
-        "direction": "S",
-        "risk": 211.0,
-        "rr": 2.5,
-        "result": "W"
+        "result": "LOSS",
+        "session": "LDN"
     },
     {
         "created_at": "2026-07-15 05:30 PM",
@@ -21,6 +14,17 @@
         "direction": "BUY",
         "risk": 279.0,
         "rr": 8.9,
-        "result": "WIN"
+        "result": "WIN",
+        "session": "NY"
+    },
+    {
+        "created_at": "2026-07-19 06:14 PM",
+        "pair": "EURUSD",
+        "session": "NY",
+        "direction": "BUY",
+        "risk": 656.0,
+        "rr": 2.3,
+        "result": "WIN",
+        "notes": "winner winner chicken dinner"
     }
 ]

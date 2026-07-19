@@ -49,3 +49,19 @@ def display_pair_stats(trades):
 
     print(f"\n=== PAIR/MARKET STATS: {pair} ===")
     display_stats(filtered_trades)
+
+def display_session_stats(trades):
+    session = input("Enter session to analyze: ").upper()
+
+    filtered_trades = []
+
+    for trade in trades:
+        if trade.get("session", "").upper() == session:
+            filtered_trades.append(trade)
+
+    if len(filtered_trades) == 0:
+        print("No trades found for that session.")
+        return
+
+    print(f"\n=== SESSION STATS: {session} ===")
+    display_stats(filtered_trades)

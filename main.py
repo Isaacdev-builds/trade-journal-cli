@@ -1,5 +1,5 @@
 from trade_system import create_trade, display_trades, delete_trade, edit_trade
-from stats_system import display_stats, display_pair_stats
+from stats_system import display_stats, display_pair_stats, display_session_stats
 from storage_system import save_trades, load_trades
 
 trades = load_trades()
@@ -10,12 +10,11 @@ while True:
     print("\n1. Add Trade")
     print("2. View Trades")
     print("3. View Stats")
-    print("4. Save Trades")
-    print("5. Exit")
-    print("6. Delete Trade")
-    print("7. Edit Trade")
-    print("8. View Pair Stats")
-    
+    print("4. Exit")
+    print("5. Delete Trade")
+    print("6. Edit Trade")
+    print("7. View Pair Stats")
+    print("8. View Session Stats")
     choice = input("Select option: ")
 
     if choice == "1":
@@ -33,26 +32,26 @@ while True:
         display_stats(trades)
 
     elif choice == "4":
-        save_trades(trades)
-
-    elif choice == "5":
         print("Exiting journal")
         break
 
-    elif choice == "6":
+    elif choice == "5":
         display_trades(trades)
         trade_number = int(input("Enter trade number to delete: "))
         delete_trade(trades, trade_number)
         save_trades(trades)
 
-    elif choice == "7":
+    elif choice == "6":
         display_trades(trades)
         trade_number = int(input("Enter trade number to edit: "))
         edit_trade(trades, trade_number)
         save_trades(trades)
 
-    elif choice == "8":
+    elif choice == "7":
         display_pair_stats(trades)
+
+    elif choice == "8":
+        display_session_stats(trades)
 
     else:
         print("Invalid option")

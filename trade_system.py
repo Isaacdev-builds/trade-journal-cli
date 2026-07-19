@@ -1,5 +1,28 @@
 from datetime import datetime
 
+def normalize_direction(value):
+    value = value.upper()
+
+    if value == "B":
+        return "BUY"
+
+    if value == "S":
+        return "SELL"
+
+    return value
+
+
+def normalize_result(value):
+    value = value.upper()
+
+    if value == "W":
+        return "WIN"
+
+    if value == "L":
+        return "LOSS"
+
+    return value
+
 def get_numeric_input(prompt):
     while True:
         try:
@@ -10,20 +33,24 @@ def get_numeric_input(prompt):
 def create_trade():
 
     pair = input("Pair/Market: ").upper()
-    direction = input("Direction (BUY/SELL): ").upper()
+    session = input("Session (e.g., NY, LDN, ASIA): ").upper()
+    direction = normalize_direction(input("Direction (BUY/SELL or B/S): "))
     risk = get_numeric_input("Risk Amount: $")
     rr = get_numeric_input("RR: ")
-    result = input("Result (WIN/LOSS): ").upper()
+    result = normalize_result(input("Result (WIN/LOSS or W/L): "))
+    notes = input("Notes (optional): ")
 
     created_at = datetime.now().strftime("%Y-%m-%d %I:%M %p")
 
     trade = {
         "created_at": created_at,
         "pair": pair,
+        "session": session,
         "direction": direction,
         "risk": risk,
         "rr": rr,
-        "result": result
+        "result": result,
+        "notes": notes
     }
 
     return trade
@@ -40,10 +67,12 @@ def display_trades(trades):
         print(f"\nTrade {index}:")
         print(f"Date: {trade.get('created_at', 'No date recorded')}")
         print(f"Pair/Market: {trade['pair']}")
+        print(f"Session: {trade.get('session', 'No session recorded')}")
         print(f"Direction: {trade['direction']}")
         print(f"Risk: ${trade['risk']:.2f}")
         print(f"RR: {trade['rr']}:1")
         print(f"Result: {trade['result']}")
+        print(f"Notes: {trade.get('notes', 'No notes recorded')}")
         print("-" * 20)
 
 def delete_trade(trades, trade_number):
@@ -57,10 +86,12 @@ def delete_trade(trades, trade_number):
 
     print("Trade deleted:")
     print(f"Pair/Market: {deleted_trade['pair']}")
+    print(f"Session: {deleted_trade.get('session', 'No session recorded')}")
     print(f"Direction: {deleted_trade['direction']}")
     print(f"Risk: ${deleted_trade['risk']:.2f}")
     print(f"RR: {deleted_trade['rr']}:1")
     print(f"Result: {deleted_trade['result']}")
+    print(f"Notes: {deleted_trade.get('notes', 'No notes recorded')}")
 
 def edit_trade(trades, trade_number):
     trade_index = trade_number - 1
@@ -73,10 +104,12 @@ def edit_trade(trades, trade_number):
 
     print("\nEditing Trade")
     print("1. Pair/Market")
-    print("2. Direction")
-    print("3. Risk")
-    print("4. RR")
-    print("5. Result")
+    print("2. Session")
+    print("3. Direction")
+    print("4. Risk")
+    print("5. RR")
+    print("6. Result")
+    print("7. Notes")
 
     field_choice = input("Select field to edit: ")
 
@@ -84,16 +117,22 @@ def edit_trade(trades, trade_number):
         trade["pair/market"] = input("New Pair/Market: ").upper()
 
     elif field_choice == "2":
-        trade["direction"] = input("New Direction (BUY/SELL): ").upper()
+        trade["session"] = input("New Session (e.g., NY, LDN, ASIA): ").upper()
 
     elif field_choice == "3":
-        trade["risk"] = get_numeric_input("New Risk Amount: $")
+        trade["direction"] = normalize_direction(input("New Direction (BUY/SELL or B/S): "))
 
     elif field_choice == "4":
+        trade["risk"] = get_numeric_input("New Risk Amount: $")
+
+    elif field_choice == "5":
         trade["rr"] = get_numeric_input("New RR: ")
        
-    elif field_choice == "5":
-        trade["result"] = input("New Result (WIN/LOSS): ").upper()
+    elif field_choice == "6":
+        trade["result"] = normalize_result(input("New Result (WIN/LOSS or W/L): "))
+
+    elif field_choice == "7":
+        trade["notes"] = input("New Notes (optional): ")
 
     else:
         print("Invalid field choice.")
