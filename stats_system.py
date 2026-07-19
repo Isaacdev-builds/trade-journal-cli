@@ -35,7 +35,7 @@ def display_stats(trades):
     print(f"Highest Risk: ${highest_risk:.2f}")
 
 def display_pair_stats(trades):
-    pair = input("Enter pair to analyze: ").upper()
+    pair = input("Enter pair/market to analyze: ").upper()
 
     filtered_trades = []
 
@@ -44,7 +44,7 @@ def display_pair_stats(trades):
             filtered_trades.append(trade)
 
     if len(filtered_trades) == 0:
-        print("No trades found for that pair.")
+        print("No trades found for that pair/market.")
         return
 
     print(f"\n=== PAIR/MARKET STATS: {pair} ===")

@@ -12,7 +12,10 @@ def load_trades():
     if not os.path.exists("trades.json"):
         return []
 
-    with open("trades.json", "r", encoding="utf-8") as file:
-        trades = json.load(file)
+    try:
+        with open("trades.json", "r", encoding="utf-8") as file:
+            return json.load(file)
 
-    return trades
+    except json.JSONDecodeError:
+        print("Warning: trades.json could not be read. Starting with an empty journal.")
+        return []

@@ -79,7 +79,7 @@ def display_trades(trades):
         print(f"Risk: ${trade['risk']:.2f}")
         print(f"RR: {trade['rr']}:1")
         print(f"Result: {trade['result']}")
-        print(f"Notes: {trade.get('notes', 'No notes recorded')}")
+        print(f"Notes: {trade.get('notes') or 'No notes recorded'}")
         print("-" * 20)
 
 def delete_trade(trades, trade_number):
@@ -98,7 +98,7 @@ def delete_trade(trades, trade_number):
     print(f"Risk: ${deleted_trade['risk']:.2f}")
     print(f"RR: {deleted_trade['rr']}:1")
     print(f"Result: {deleted_trade['result']}")
-    print(f"Notes: {deleted_trade.get('notes', 'No notes recorded')}")
+    print(f"Notes: {deleted_trade.get('notes') or 'No notes recorded'}")
 
     return True
 
